@@ -12,6 +12,7 @@ use Yii;
  * @property string|null $title
  *
  * @property ItemCategories[] $itemCategories
+ * @property SubCategories[] $subCategories
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -54,5 +55,9 @@ class Category extends \yii\db\ActiveRecord
     public function getItemCategories()
     {
         return $this->hasMany(ItemCategories::className(), ['category_id' => 'id']);
+    }
+
+    public function getSubCategories() {
+        return $this->hasMany(Category::className(), ['parent_id' => 'id']);
     }
 }

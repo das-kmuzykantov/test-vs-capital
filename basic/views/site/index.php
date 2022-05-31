@@ -4,6 +4,20 @@
 
 $this->title = 'Test Yii Application';
 ?>
+<?php
+    function categoryRender($category)
+    {
+        if($category->subCategories) {
+            echo '<ul>';
+            foreach($category->subCategories as $sub) {
+                echo '<li><a class="js-list" href="#" data-id="' . $sub->id .'">' . $sub->title .'</a></li>';
+                categoryRender($sub);
+            }
+            echo '</ul>';
+        }
+    }
+?>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <div class="site-index">
     <div class="body-content">
@@ -12,6 +26,7 @@ $this->title = 'Test Yii Application';
                 <ul>
                     <?php foreach($categories as $category) { ?>
                         <li><a class="js-list" href="#" data-id="<?= $category->id; ?>"><?= $category->title; ?></a></li>
+                        <?= categoryRender($category); ?>
                     <?php } ?>
                 </ul>
             </div>

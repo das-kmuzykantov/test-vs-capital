@@ -11,12 +11,6 @@ class ItemController extends \yii\rest\ActiveController
 {
     public $modelClass = 'app\models\Item';
 
-    public function beforeAction($action) {
-        $this->enableCsrfValidation = false;
-        return parent::beforeAction($action);
-    }
-
-
     public function actions() {
         $actions = parent::actions();
         $actions['create']['class'] = 'app\actions\CreateItemAction';

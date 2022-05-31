@@ -65,4 +65,5 @@ class SiteController extends Controller
         $categories = Category::find()->all();
         return $this->render('index', ['categories' => $categories]);
     }
+
 }
